@@ -34,6 +34,23 @@ class World:
                 self.rooms[room_id].connect_rooms('w', self.rooms[room_graph[room_id][1]['w']])
         self.starting_room = self.rooms[0]
 
+    def print_grid(self):
+        rotated_room_grid = []
+        for i in range(0, len(self.room_grid)):
+            rotated_room_grid.append([None] * len(self.room_grid))
+        for i in range(len(self.room_grid)):
+            for j in range(len(self.room_grid[0])):
+                # print(bool(self.room_grid[i][j]))
+                if bool(self.room_grid[i][j]):
+                    binary = self.room_grid[i][j].id
+                else:
+                    binary = 0
+                rotated_room_grid[len(self.room_grid[0]) - j - 1][i] = binary
+        # print(rotated_room_grid)
+        rotated_room_grid = rotated_room_grid[::-1]
+        for row in rotated_room_grid:
+            print(row)
+
     def print_rooms(self):
         rotated_room_grid = []
         for i in range(0, len(self.room_grid)):
